@@ -28,10 +28,12 @@ public class MovementManager : MonoBehaviour
 
     void EasingFunc()
     {
+        //move object
         _squashObject.transform.position = new Vector3(0, _easingCurve.Evaluate(t), -3);
 
         _squashObject.transform.Rotate(0, 1, 0);
 
+        //checks if the 't' variable is below a certain threshold, if so, begins squashing the object
         if (t < 0.35f)
         {
             Squash();
@@ -42,8 +44,6 @@ public class MovementManager : MonoBehaviour
             squashT = 0;
         }
 
-        t += _goingUp ? Time.smoothDeltaTime : -Time.smoothDeltaTime;
-
         if (t > 1.0f)
         {
             _goingUp = false;
@@ -53,6 +53,8 @@ public class MovementManager : MonoBehaviour
         {
             _goingUp = true;
         }
+
+        t += _goingUp ? Time.smoothDeltaTime : -Time.smoothDeltaTime;
     }
 
     void LerpFunc()
